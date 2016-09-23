@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#9b9b9b</color>
+
+    <color name="transparent_bg">#00000000</color>
+    <color name="gradient_start">#AA323232</color>
+    <color name="gradient_end">#663D3D3D</color>
+
+    <color name="app_set_up_left_right">#9b9b9b</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="green">#378c62</color>
+    <color name="offer_page_color">#44000000</color>
+
+    <color name="fc_indicator_focused">#83ffed</color>
+    <color name="fc_indicator_back">#ffffff</color>
+
+    <color name="color_skip_btn">#70999999</color>
+    <color name="color_page_app_setup">#70999999</color>
+    <color name="bg_clam_account">#99111111</color>
+    <color name="bg_color_setup_page2">#9a264b</color>
+    <color name="bg_color_setup_page3">#5a1a3c</color>
+    <color name="bg_color_setup_page4">#8ab761</color>
+    <color name="bg_color_home">#888888</color>
+
+
+    <color name="contact_us_title_color">#801950</color>
+    <color name="contact_us_immediate_color">#5a1a3c</color>
+    <color name="next_icon_color">#7D7F87</color>
+    <color name="histroty_txt_color">#55585E</color>
+    <color name="listview_seperator_color">#EEEEEE</color>
+
+    <color name ="welcome_icon_bg_color">#2c7c82</color>
+    <color name ="welcome_bg_color">#3f9ea6</color>
+    <color name ="referral_bg_color">#308a92</color>
+    <color name ="birthday_icon_bg_color">#544175</color>
+    <color name ="birthday_bg_color">#675784</color>
+    <color name ="reword_title_color">#7d7d7d</color>
+
+
+    <color name="bg_color_1">#F7F7F7</color>
+    <color name="bg_color_2">#CCCCCC</color>
+    <color name="bg_color_3">#E1E1E1</color>
+    <color name="tv_bg_1">#3F9EA6</color>
+    <color name="tv_bg_2">#2C7C82</color>
+    <color name="bg_circle">#B6B6B6</color>
+    <color name="bg_send_color">#9C9C9C</color>
+</resources>
