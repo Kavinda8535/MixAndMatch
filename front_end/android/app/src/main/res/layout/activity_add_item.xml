@@ -57,12 +57,26 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/tvBrand" />
 
-            <Spinner
+           <!-- <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/spBrand"
-                android:layout_weight="1" />
+                android:layout_weight="1" />-->
+
+            <EditText
+                android:id="@+id/etBrand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:text="Name"
+                android:ems="10"
+                 />
+
+
+
         </LinearLayout>
+
+
 
         <LinearLayout
             android:orientation="horizontal"
@@ -110,7 +124,7 @@
             android:text="Submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button3"
+            android:id="@+id/btnSubmit"
             android:layout_marginTop="10dp" />
 
 

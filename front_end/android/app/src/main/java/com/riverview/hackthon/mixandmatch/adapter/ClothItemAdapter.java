@@ -57,7 +57,8 @@ public class ClothItemAdapter extends RecyclerView.Adapter<ClothItemAdapter.Clot
 
     @Override
     public int getItemCount() {
-        return clothItemList.size();
+       // return clothItemList.size();
+        return 0;
     }
 
     public class ClothItemViewHolder extends RecyclerView.ViewHolder {

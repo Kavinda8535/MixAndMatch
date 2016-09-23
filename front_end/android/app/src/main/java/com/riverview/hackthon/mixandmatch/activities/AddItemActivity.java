@@ -16,25 +16,33 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.flask.colorpicker.ColorPickerView;
 import com.flask.colorpicker.OnColorSelectedListener;
 import com.flask.colorpicker.builder.ColorPickerClickListener;
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
+import com.riverview.hackthon.mixandmatch.DbUtil.DatabaseHandler;
 import com.riverview.hackthon.mixandmatch.R;
 import com.riverview.hackthon.mixandmatch.Utils.AppConst;
 import com.riverview.hackthon.mixandmatch.Utils.AppUtil;
+import com.riverview.hackthon.mixandmatch.model.BeanItem;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class AddItemActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -44,6 +52,8 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
 
     private ImageView imgVAddImage;
 
+    private EditText etBrand;
+
     private Spinner spCategory,spColor,spBrand;
 
     private ImageView imgColorPicker;
@@ -51,6 +61,11 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
     private String imagePath = null;
 
     private String pathI = null;
+
+    private String strColor;
+    private Button btnSubmit;
+
+    private  HashMap<String,Integer> categoryList =null;
 
     private HashMap<String, String> attachments = new HashMap<String, String>();
 
@@ -68,17 +83,39 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
         imgColorPicker = (ImageView) findViewById(R.id.imgColorPicker);
         imgColorPicker.setOnClickListener(this);
 
+        etBrand = (EditText) findViewById(R.id.etBrand);
+
         spCategory = (Spinner) findViewById(R.id.spCategory);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.item_category_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spCategory.setAdapter(adapter);
+
+        HashMap<String, Integer> categoryList = getCategories();
+        if(categoryList != null){
+            ArrayList<String> categoryNameList = getCategoryNameList(categoryList);
+           /* ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                    R.array.item_category_array, android.R.layout.simple_spinner_item);*/
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_spinner_item, categoryNameList);
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spCategory.setAdapter(adapter);
+        }
+
+
+
+
+
+        btnSubmit = (Button) findViewById(R.id.btnSubmit);
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveItemDetails();
+            }
+        });
 
        // spColor = (Spinner) findViewById(R.id.spColor);
 
 
 
-        spBrand = (Spinner) findViewById(R.id.spBrand);
+       // spBrand = (Spinner) findViewById(R.id.spBrand);
 
 
     }
@@ -160,6 +197,7 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
                     public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
                         //changeBackgroundColor(selectedColor);
                         imgColorPicker.setBackgroundColor(selectedColor);
+                        strColor = String.valueOf(selectedColor);
                         Toast.makeText(AddItemActivity.this,""+selectedColor,Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -255,5 +293,52 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private  void saveItemDetails(){
+        DatabaseHandler db = new DatabaseHandler(this);
+        BeanItem clothItem = new BeanItem();
+        String category = spCategory.getSelectedItem().toString();
+        clothItem.setCategoryId(categoryList.get(category));
+        clothItem.setBrand(etBrand.getText().toString());
+        clothItem.setColor(strColor);
+        clothItem.setImage(imagePath);
+
+       long returnValue =  db.addClothItem(clothItem);
+
+        if(returnValue > 0){
+            Toast.makeText(this,"Data are saved sucessfully",Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        switch (itemId) {
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public HashMap<String,Integer> getCategories(){
+        DatabaseHandler db = new DatabaseHandler(this);
+        categoryList  = db.getAllCategory();
+
+        return categoryList;
+    }
+
+    private ArrayList<String> getCategoryNameList(HashMap<String,Integer> list){
+        ArrayList<String> categoryNameList = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : list.entrySet()) {
+            categoryNameList.add(entry.getKey());
+        }
+        return categoryNameList;
     }
 }

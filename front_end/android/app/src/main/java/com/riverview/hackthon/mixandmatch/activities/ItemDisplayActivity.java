@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.riverview.hackthon.mixandmatch.R;
@@ -36,8 +37,8 @@ public class ItemDisplayActivity extends AppCompatActivity {
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recycleViewItem.setLayoutManager(llm);
 
-        clothItemAdapter = new ClothItemAdapter(this, clothItemList);
-        recycleViewItem.setAdapter(clothItemAdapter);
+       // clothItemAdapter = new ClothItemAdapter(this, clothItemList);
+       // recycleViewItem.setAdapter(clothItemAdapter);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -51,6 +52,20 @@ public class ItemDisplayActivity extends AppCompatActivity {
                         .setAction("Action", null).show();*/
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        switch (itemId) {
+            case android.R.id.home:
+                finish();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
