@@ -111,11 +111,6 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-       // spColor = (Spinner) findViewById(R.id.spColor);
-
-
-
-       // spBrand = (Spinner) findViewById(R.id.spBrand);
 
 
     }

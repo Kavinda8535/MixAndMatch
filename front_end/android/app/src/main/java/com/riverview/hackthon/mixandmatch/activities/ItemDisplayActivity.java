@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.riverview.hackthon.mixandmatch.DbUtil.DatabaseHandler;
 import com.riverview.hackthon.mixandmatch.R;
 import com.riverview.hackthon.mixandmatch.adapter.ClothItemAdapter;
 import com.riverview.hackthon.mixandmatch.model.BeanItem;
@@ -32,13 +33,20 @@ public class ItemDisplayActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        DatabaseHandler db = new DatabaseHandler(this);
+        clothItemList = db.getAllClothItem() ;
+
         recycleViewItem = (RecyclerView) findViewById(R.id.recycleViewItem);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recycleViewItem.setLayoutManager(llm);
 
-       // clothItemAdapter = new ClothItemAdapter(this, clothItemList);
-       // recycleViewItem.setAdapter(clothItemAdapter);
+
+        if(clothItemList != null){
+            clothItemAdapter = new ClothItemAdapter(this, clothItemList);
+            recycleViewItem.setAdapter(clothItemAdapter);
+        }
+
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

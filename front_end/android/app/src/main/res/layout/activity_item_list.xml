@@ -17,7 +17,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/plus_icon" />
+        android:src="@drawable/plus_icon"
+        android:foreground="@color/colorPrimary"
+        android:background="@color/colorPrimary"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycleViewItem"

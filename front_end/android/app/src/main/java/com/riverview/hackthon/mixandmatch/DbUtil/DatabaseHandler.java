@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.riverview.hackthon.mixandmatch.model.BeanCategory;
 import com.riverview.hackthon.mixandmatch.model.BeanItem;
+import com.riverview.hackthon.mixandmatch.model.BeanUserData;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -46,6 +47,8 @@ public class DatabaseHandler extends SQLiteOpenHelper{
     private static final String TABLE_ITEM = "item";
     // Contacts table name
     private static final String TABLE_STYLE = "style";
+
+    private static final String TABLE_USER = "user";
 
 
     @Override
@@ -121,6 +124,25 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 
         return value;
     }
+
+
+    public long addUserData(BeanUserData beanUser) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("name", beanUser.getName() );
+        values.put("email", beanUser.getEmail());
+        values.put("contact_number", beanUser.getCantact_number());
+        values.put("city", beanUser.getCity());
+        values.put("country", beanUser.getCountry());
+
+        // Inserting Row
+        long value = db.insert(TABLE_USER, null, values);
+        db.close(); // Closing database connection
+
+        return value;
+    }
+
 
     private BeanCategory getCategory() {
         SQLiteDatabase db = this.getReadableDatabase();

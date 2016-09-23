@@ -25,6 +25,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Contact number"
         android:inputType="phone"
         android:ems="10"/>
 
@@ -33,7 +34,26 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Email"
         android:inputType="textEmailAddress"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/et_city"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="City"
+        android:inputType="text"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/et_country"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contry"
+        android:inputType="text"
         android:ems="10" />
 
     <Button

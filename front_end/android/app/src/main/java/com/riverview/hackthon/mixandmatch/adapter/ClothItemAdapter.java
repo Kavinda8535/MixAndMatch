@@ -1,6 +1,7 @@
 package com.riverview.hackthon.mixandmatch.adapter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.riverview.hackthon.mixandmatch.R;
+import com.riverview.hackthon.mixandmatch.Utils.AppUtil;
 import com.riverview.hackthon.mixandmatch.model.BeanItem;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 /**
@@ -34,31 +38,24 @@ public class ClothItemAdapter extends RecyclerView.Adapter<ClothItemAdapter.Clot
 
     @Override
     public void onBindViewHolder(ClothItemViewHolder holder, int position) {
-       /* BeanOffers offersItem = clothItemList.get(position);
+        BeanItem cloItem = clothItemList.get(position);
 
-        holder.newsTitle.setText(offersItem.getTitle());
-        holder.newsDate.setText(AppUtil.convertDate(context, offersItem.getStart_date(), false) + " - " + AppUtil.convertDate(context, offersItem.getEnd_date(), false));
-        AppUtil.loadImageWithPlaceholder(context, offersItem.getImage(), holder.newsItemImage, R.drawable.placeholder);
+        holder.newsTitle.setText(cloItem.getBrand());
+        holder.newsDate.setText(cloItem.getColor());
 
-        holder.mArrow.setBackground(getDrawable(Iconify.IconValue.tbsm_forward, Color.parseColor("#7D7F87"), context));
-
-        BeanPromotionItem temp = new BeanPromotionItem(offersItem.getId(), offersItem.getTitle());
-        temp.setDescription(offersItem.getDescription());
-        temp.setStartdate(offersItem.getStart_date());
-        temp.setEnddate(offersItem.getEnd_date());
-        temp.setImageurl(offersItem.getImage());
-        temp.setRedemption_method(offersItem.getRedemption_method());
-        temp.setTerms(offersItem.getTerms_and_conditions());
-
-        holder.view.setOnClickListener(v -> ((MainActivity) context).loadFragment(SingleOfferNewFragment.newInstance(temp), true));*/
+        if(cloItem.getImage() != null && !cloItem.getImage().isEmpty()){
+            loadImageWithPlaceholder(context, cloItem.getImage(), holder.newsItemImage, R.drawable.placeholder);
+        } else{
+            loadImageWithPlaceholder(context, null,  holder.newsItemImage, R.drawable.placeholder);
+        }
     }
 
 
 
     @Override
     public int getItemCount() {
-       // return clothItemList.size();
-        return 0;
+        return clothItemList.size();
+
     }
 
     public class ClothItemViewHolder extends RecyclerView.ViewHolder {
@@ -81,6 +78,10 @@ public class ClothItemAdapter extends RecyclerView.Adapter<ClothItemAdapter.Clot
 
 
         }
+    }
+
+    public static void loadImageWithPlaceholder(Context context, String url, ImageView imageView, int placeHolder){
+        Picasso.with(context).load(url).placeholder(placeHolder).into(imageView);
     }
 
 }
