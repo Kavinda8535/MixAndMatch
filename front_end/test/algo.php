@@ -4,6 +4,13 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 
+$current_mix = [1,2,3];
+$new_mix = [1,2,3];
+
+var_dump(array_diff($current_mix,$new_mix ));
+
+die();
+
 $items = [];
 
 $items[1]['name']   = 'T-shirt';
@@ -55,6 +62,11 @@ function getVariations($total_items)
 }
 
 
+
+/*
+ * @todo store generated mix and keep it globally and compare it with newly generated mix. If matched re-generate a mix.
+ *
+ */
 function getStyle($items, &$tops, &$mids, &$bottoms, &$topTops, &$midMids)
 {
     //separate item types
@@ -89,6 +101,7 @@ function getStyle($items, &$tops, &$mids, &$bottoms, &$topTops, &$midMids)
         $mid = $top;
         $top = $topTops;
     }
+
 
 
     return [$top, $mid, $bottom];
