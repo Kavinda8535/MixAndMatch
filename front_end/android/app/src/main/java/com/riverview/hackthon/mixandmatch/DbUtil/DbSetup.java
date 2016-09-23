@@ -21,7 +21,7 @@ public class  DbSetup extends SQLiteOpenHelper{
 
 
     private static String DATABASE_NAME = "mixnmatch.db";
-    public final static String DATABASE_PATH = "/data/data/com.kan.linnaeus/databases/";
+    public final static String DATABASE_PATH = "/assets/mixnmatch.db";
     private static final int DATABASE_VERSION = 1;
 
     private SQLiteDatabase dataBase;

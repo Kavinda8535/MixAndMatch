@@ -1,6 +1,7 @@
 package com.riverview.hackthon.mixandmatch.activities;
 
 import android.annotation.TargetApi;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -19,7 +20,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.flask.colorpicker.ColorPickerView;
+import com.flask.colorpicker.OnColorSelectedListener;
+import com.flask.colorpicker.builder.ColorPickerClickListener;
+import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import com.riverview.hackthon.mixandmatch.R;
 import com.riverview.hackthon.mixandmatch.Utils.AppConst;
 import com.riverview.hackthon.mixandmatch.Utils.AppUtil;
@@ -40,6 +46,8 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
 
     private Spinner spCategory,spColor,spBrand;
 
+    private ImageView imgColorPicker;
+
     private String imagePath = null;
 
     private String pathI = null;
@@ -57,13 +65,19 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
         imgVAddImage = (ImageView) findViewById(R.id.imgVAddImage);
         imgVAddImage.setOnClickListener(this);
 
+        imgColorPicker = (ImageView) findViewById(R.id.imgColorPicker);
+        imgColorPicker.setOnClickListener(this);
+
         spCategory = (Spinner) findViewById(R.id.spCategory);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.item_category_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCategory.setAdapter(adapter);
 
-        spColor = (Spinner) findViewById(R.id.spColor);
+       // spColor = (Spinner) findViewById(R.id.spColor);
+
+
+
         spBrand = (Spinner) findViewById(R.id.spBrand);
 
 
@@ -119,10 +133,43 @@ public class AddItemActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.imgVAddImage:
                 addImage();
                 break;
+            case R.id.imgColorPicker:
+                showColorPicker();
+                break;
             default:
                 break;
 
         }
+    }
+
+    private  void showColorPicker(){
+        ColorPickerDialogBuilder
+                .with(this)
+                .setTitle("Choose color")
+                .initialColor(R.color.green)
+                .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
+                .density(12)
+                .setOnColorSelectedListener(new OnColorSelectedListener() {
+                    @Override
+                    public void onColorSelected(int selectedColor) {
+                       // toast("onColorSelected: 0x" + Integer.toHexString(selectedColor));
+                    }
+                })
+                .setPositiveButton("ok", new ColorPickerClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int selectedColor, Integer[] allColors) {
+                        //changeBackgroundColor(selectedColor);
+                        imgColorPicker.setBackgroundColor(selectedColor);
+                        Toast.makeText(AddItemActivity.this,""+selectedColor,Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .build()
+                .show();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

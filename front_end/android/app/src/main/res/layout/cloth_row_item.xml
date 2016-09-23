@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:padding="15dp"
+    android:gravity="center_horizontal"
+    tools:ignore="MissingPrefix">
+
+    <LinearLayout
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imgNews"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder" />
+    </LinearLayout>
+
+    <android.support.v4.widget.Space
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:layout_weight=".05" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="85dp"
+        android:layout_weight=".6"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvNewsTitle"
+            fontPath="Interstate_RegularCompressed.ttf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="News name"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:textColor="@android:color/background_dark" />
+
+        <TextView
+            android:id="@+id/tvNewsDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="3.5dp"
+            android:text="Date"
+            android:textColor="@android:color/darker_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="85dp"
+        android:layout_weight=".1"
+        android:gravity="center_vertical|center">
+
+        <TextView
+            android:id="@+id/tvArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end" />
+    </LinearLayout>
+
+</LinearLayout>
