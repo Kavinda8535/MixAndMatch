@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.btnShedule:
-                intent =  new Intent(getApplicationContext(),ItemDisplayActivity.class);
+                intent =  new Intent(getApplicationContext(),ScheduleActivity.class);
                 startActivity(intent);
                 break;
 

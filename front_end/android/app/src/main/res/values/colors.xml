@@ -47,4 +47,6 @@
     <color name="tv_bg_2">#2C7C82</color>
     <color name="bg_circle">#B6B6B6</color>
     <color name="bg_send_color">#9C9C9C</color>
+    <color name="btn_primary">#3366cc</color>
+    <color name="btn_3366cc">#3366cc</color>
 </resources>
