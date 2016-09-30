@@ -8,41 +8,44 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
+
 import com.riverview.hackthon.mixandmatch.R;
-import com.riverview.hackthon.mixandmatch.Utils.AppUtil;
-import com.riverview.hackthon.mixandmatch.model.BeanItem;
+import com.riverview.hackthon.mixandmatch.model.BeanClothSelector;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
- * Created by root on 9/8/16.
+ * Created by Rumesha on 27/09/2016.
  */
-public class ClothItemAdapter extends RecyclerView.Adapter<ClothItemAdapter.ClothItemViewHolder> {
-    public static final String TAG = ClothItemAdapter.class.getSimpleName();
+
+public class CenterItemAdapter extends RecyclerView.Adapter<CenterItemAdapter.ClothItemViewHolder>{
+
+
+
+    public static final String TAG = CenterItemAdapter.class.getSimpleName();
 
     private Activity context;
-    private ArrayList<BeanItem> clothItemList;
+    private HashMap<Integer,BeanClothSelector> clothItemList;
 
-    public ClothItemAdapter(Activity context, ArrayList<BeanItem> list) {
+    public CenterItemAdapter(Activity context, HashMap<Integer,BeanClothSelector> list) {
         this.context = context;
         this.clothItemList = list;
     }
 
     @Override
-    public ClothItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cloth_row_item, viewGroup, false);
-        return new ClothItemViewHolder(itemView);
+    public CenterItemAdapter.ClothItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cloth__top_item_row, viewGroup, false);
+        return new CenterItemAdapter.ClothItemViewHolder(itemView);
 
     }
 
     @Override
-    public void onBindViewHolder(ClothItemViewHolder holder, int position) {
-        BeanItem cloItem = clothItemList.get(position);
+    public void onBindViewHolder(CenterItemAdapter.ClothItemViewHolder holder, int position) {
+        BeanClothSelector cloItem = clothItemList.get(position);
 
-        holder.newsTitle.setText(cloItem.getBrand());
-        holder.newsDate.setText(cloItem.getColor());
+        // holder.newsTitle.setText(cloItem.getBrand());
+        // holder.newsDate.setText(cloItem.getColor());
 
         if(cloItem.getImage() != null && !cloItem.getImage().isEmpty()){
             holder.newsItemImage.setImageDrawable(Drawable.createFromPath(cloItem.getImage()));
@@ -50,7 +53,6 @@ public class ClothItemAdapter extends RecyclerView.Adapter<ClothItemAdapter.Clot
             loadImageWithPlaceholder(context, null,  holder.newsItemImage, R.drawable.placeholder);
         }
     }
-
 
 
     @Override
@@ -62,9 +64,7 @@ public class ClothItemAdapter extends RecyclerView.Adapter<ClothItemAdapter.Clot
     public class ClothItemViewHolder extends RecyclerView.ViewHolder {
 
         protected ImageView newsItemImage;
-        protected TextView newsTitle;
-        protected TextView newsDate;
-        protected TextView mArrow;
+
         protected View view;
 
         public ClothItemViewHolder(View itemView) {
@@ -72,10 +72,8 @@ public class ClothItemAdapter extends RecyclerView.Adapter<ClothItemAdapter.Clot
 
             view = itemView;
 
-            newsItemImage = (ImageView) itemView.findViewById(R.id.imgNews);
-            newsTitle = (TextView) itemView.findViewById(R.id.tvNewsTitle);
-            newsDate = (TextView) itemView.findViewById(R.id.tvNewsDate);
-            mArrow = (TextView) itemView.findViewById(R.id.tvArrow);
+            newsItemImage = (ImageView) itemView.findViewById(R.id.imgTop);
+
 
 
         }

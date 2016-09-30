@@ -1,8 +1,15 @@
 <resources>
-    <string name="app_name">Mix n Match</string>
+    <!--<string name="app_name">Mix n Match</string>-->
+    <string name="app_name">Test</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_add_item">Schedule</string>
+    <string name="title_activity_schedule_item">Schedule</string>
+    <string name="title_activity_add_item">Add Item</string>
     <string name="title_activity_add_display">Items</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_mix_nmatch">Mix N\' Match</string>
+    <string name="text_mixMAthch">Mix N\' Match</string>
+    <string name="title_activity_this_week">Schedule</string>
+
+    <string name="title_home">Home</string>
 </resources>

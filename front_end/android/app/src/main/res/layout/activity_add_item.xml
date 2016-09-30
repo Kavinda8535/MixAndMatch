@@ -68,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:text="Name"
+                android:text=""
                 android:ems="10"
                  />
 
@@ -121,11 +121,13 @@
         </LinearLayout>
 
         <Button
+            android:background="@color/colorPrimary"
             android:text="Submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnSubmit"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"/>
 
 
 

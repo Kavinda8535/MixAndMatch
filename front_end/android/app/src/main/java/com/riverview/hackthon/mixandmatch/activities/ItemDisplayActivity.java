@@ -31,7 +31,7 @@ public class ItemDisplayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_list);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
 
         DatabaseHandler db = new DatabaseHandler(this);
         clothItemList = db.getAllClothItem() ;

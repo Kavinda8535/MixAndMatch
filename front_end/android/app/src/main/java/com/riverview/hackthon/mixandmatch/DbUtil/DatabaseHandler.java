@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.riverview.hackthon.mixandmatch.model.BeanCategory;
+import com.riverview.hackthon.mixandmatch.model.BeanClothSelector;
 import com.riverview.hackthon.mixandmatch.model.BeanItem;
 import com.riverview.hackthon.mixandmatch.model.BeanUserData;
 
@@ -49,6 +50,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
     private static final String TABLE_STYLE = "style";
 
     private static final String TABLE_USER = "user";
+
 
 
     @Override
@@ -138,6 +140,23 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 
         // Inserting Row
         long value = db.insert(TABLE_USER, null, values);
+        db.close(); // Closing database connection
+
+        return value;
+    }
+
+
+    public long addStyleData(ArrayList<Integer> usePerference) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("item_top", usePerference.get(0) );
+        values.put("item_mid", usePerference.get(1));
+        values.put("item_bottom", usePerference.get(2));
+        values.put("dislike", "");
+
+        // Inserting Row
+        long value = db.insert(TABLE_STYLE, null, values);
         db.close(); // Closing database connection
 
         return value;
@@ -254,4 +273,80 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         super.close();
 
     }
+
+    public   HashMap<Integer,BeanClothSelector> getClothItem(String condition){
+        SQLiteDatabase db = null;
+        HashMap<Integer,BeanClothSelector> clothItemTopList = null;
+        try {
+
+            clothItemTopList = new HashMap<>();
+
+            // Select All Query
+            String selectQuery = "SELECT I.id, i.image, C.type FROM item I\n" +
+                    "INNER JOIN category C\n" +
+                    "ON I.category_id = C.id \n" +
+                    "WHERE C.type IN ("+condition+")";
+
+            db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery(selectQuery, null);
+
+            // looping through all rows and adding to list
+            if (cursor.moveToFirst()) {
+                do {
+                    BeanClothSelector beanTopCloth = new BeanClothSelector();
+                    beanTopCloth.setItemID(cursor.getInt(0));
+                    beanTopCloth.setImage(cursor.getString(1));
+                    beanTopCloth.setType(cursor.getString(2));
+                    clothItemTopList.put(cursor.getInt(0),beanTopCloth);
+                } while (cursor.moveToNext());
+            }
+            db.close();
+
+        }catch (Exception ex){
+            db.close();
+        }
+
+
+        // return contact list
+        return clothItemTopList;
+    }
+
+    /*private  HashMap<String,BeanClothSelector> getMediumClothItem(){
+        SQLiteDatabase db = null;
+        HashMap<String,BeanClothSelector> clothItemMediumTopList = null;
+        try {
+
+            clothItemMediumTopList = new HashMap<>();
+
+            // Select All Query
+            String selectQuery = "SELECT I.id, i.image, C.type FROM item I\n" +
+                    "INNER JOIN category C\n" +
+                    "ON I.category_id = C.id ";
+
+            db = this.getReadableDatabase();
+            Cursor cursor = db.rawQuery(selectQuery, null);
+
+            // looping through all rows and adding to list
+            if (cursor.moveToFirst()) {
+                do {
+                    BeanClothSelector beanTopCloth = new BeanClothSelector();
+                    beanTopCloth.setItemID(cursor.getInt(0));
+                    beanTopCloth.setImage(cursor.getString(1));
+                    beanTopCloth.setType(cursor.getString(2));
+
+                    clothItemMediumTopList.put(cursor.getString(0),beanTopCloth);
+                } while (cursor.moveToNext());
+            }
+            db.close();
+
+        }catch (Exception ex){
+            db.close();
+        }
+
+
+        // return contact list
+        return clothItemMediumTopList;
+    }*/
+
+
 }

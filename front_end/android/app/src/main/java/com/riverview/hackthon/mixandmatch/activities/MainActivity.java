@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnAddItem = (Button) findViewById(R.id.btnAddItem);
         btnMixMatch = (Button) findViewById(R.id.btnMixMatch);
         btnShedule = (Button) findViewById(R.id.btnShedule);
-        btnWeekArrange = (Button) findViewById(R.id.btnAddItem);
+        btnWeekArrange = (Button) findViewById(R.id.btnWeekArrange);
 
         btnAddItem.setOnClickListener(this);
         btnMixMatch.setOnClickListener(this);
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Override
+   /* @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @Override
     public void onClick(View view) {
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
                 break;
             case R.id.btnMixMatch:
-                intent =  new Intent(getApplicationContext(),ItemDisplayActivity.class);
+                intent =  new Intent(getApplicationContext(),MixNMatchActivity.class);
                 startActivity(intent);
                 break;
             case R.id.btnShedule:
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.btnWeekArrange:
-                intent =  new Intent(getApplicationContext(),ItemDisplayActivity.class);
+                intent =  new Intent(getApplicationContext(),MixNMatchActivity.class);
                 startActivity(intent);
                 break;
             default:
